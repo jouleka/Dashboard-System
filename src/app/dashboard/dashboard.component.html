@@ -1,0 +1,111 @@
+<br />
+
+<div>
+  <h3>Add a Dashboard</h3>
+
+  <form [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Dashboard Name</mat-label>
+        <input  matInput placeholder="Name" formControlName="dashboardName" required type="text" id="dashboardName"
+          [(ngModel)]="dashboard.dashboardName" name="dashboardName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dashboard Description</mat-label>
+        <input matInput placeholder="description" formControlName="dashboardDescription" type="text"
+          id="dashboardDescription" [(ngModel)]="dashboard.dashboardDescription" name="dashboardDescription" />
+      </mat-form-field>
+      <!-- <div class="dashboard-logo">
+        <h4>Dashboard Logo</h4>
+    <button type="button" id="btn" mat-raised-button (click)="fileInput.click()">
+      Choose File
+    </button>
+    <br>
+    <input hidden (change)="readUrl($event)" #fileInput type="file" id="file" accept="image/*"
+      (change)="onFileSelected()" />
+      <br>
+    <img [src]="url" width="130px" height="100px" id="input" />
+
+      </div> -->
+
+      <button (ngSubmit)="onSubmit()" mat-flat-button color="success" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<div>
+  <mat-form-field class="filter">
+    <input matInput (keyup)="applyFilter($event)" id="filter" placeholder="Filter" #input />
+  </mat-form-field>
+
+  <mat-form-field class="search">
+    <mat-label>Display</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option (click)="getDashboardList()" value="All">All</mat-option>
+      <mat-option (click)="getOnlineDashboards()" value="Online">Online</mat-option>
+      <mat-option (click)="getOfflineDashboards()" value="Offline">Offline</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="container text-center">
+  <!-- <button class="position" mat-flat-button (click)="addBtnClick()"><mat-icon class="green-icon">post_add</mat-icon></button> -->
+
+  <table mat-table [dataSource]="datasource" matSort status="true" class="my-table mat-elevation-z8">
+
+    <ng-container matColumnDef="dashboardName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td [ngClass]="{'new-matcell' : !dashboard.status}" mat-cell *matCellDef="let dashboard">
+        {{ dashboard.dashboardName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dashboardDescription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td [ngClass]="{'new-matcell' : !dashboard.status}" mat-cell *matCellDef="let dashboard">
+        {{ dashboard.dashboardDescription }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell class="actions" *matHeaderCellDef>View</th>
+      <td mat-cell *matCellDef="let dashboard">
+        <button [ngClass]="{'new-matcell' : !dashboard.status}" [disabled]="!dashboard.status" (click)="viewDashboardPage(dashboard.id)" mat-button>
+          <mat-icon class="green-icon">visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let dashboard">
+          <mat-slide-toggle [checked]="dashboard.status" (change)="onClick($event, dashboard)"></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell class="actions" *matHeaderCellDef>Update</th>
+      <td mat-cell *matCellDef="let dashboard">
+        <button [ngClass]="{'new-matcell' : !dashboard.status}" [disabled]="!dashboard.status" (click)="updateDialog(dashboard.id)" mat-button>
+          <mat-icon class="brown-icon">edit_note</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell class="actions" *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let dashboard">
+        <button [ngClass]="{'new-matcell' : !dashboard.status}" [disabled]="!dashboard.status" (click)="deleteDialog(dashboard.id)" mat-button>
+          <mat-icon class="red-icon">delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator class="mat-paginator" [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,0 +1,68 @@
+<div>
+  <h3>Add a Widget</h3>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Widget Name</mat-label>
+        <input matInput placeholder="Name" required type="text" id="widgetName" [(ngModel)]="widget.widgetName"
+          name="widgetName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Widget Description</mat-label>
+        <input matInput placeholder="description" type="text" id="widgetDescription"
+          [(ngModel)]="widget.widgetDescription" name="widgetDescription" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>datasource.url.data</mat-label>
+        <input matInput disabled type="text" id="datasource" [(ngModel)]="widget.datasource" name="datasource" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Chart Type</mat-label>
+        <mat-select [(ngModel)]="widget.chartType" name="chartType">
+          <mat-option value="line">Line</mat-option>
+          <mat-option value="bar">Bar</mat-option>
+          <mat-option value="pie">Pie</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Widget Datas</mat-label>
+        <mat-select [(ngModel)]="widget.widgetDataModels" name="widgetDataModel" multiple>
+          <mat-option *ngFor="let widget of widgetDataModel" [value]="widget">
+            {{ widget }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <mat-form-field>
+        <mat-label>Widget Datas</mat-label>
+        <mat-select [(ngModel)]="widget.widgetDataModels" name="widgetDataModel" multiple>
+          <mat-option value="co2Emissions">Co2 Emissions</mat-option>
+          <mat-option value="rainQuantity">Rain Quantity</mat-option>
+          <mat-option value="temperatureData">Temperature Data</mat-option>
+          <mat-option value="gasCosts">Gas Costs</mat-option>
+          <mat-option value="heatData">Heat Data</mat-option>
+          <mat-option value="acidEmission">Acid Emission</mat-option>
+          <mat-option value="refrigeration">Refrigeration</mat-option>
+          <mat-option value="companyBudget">Company Budget</mat-option>
+          <mat-option value="energyConsumption">Energy Consumption</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+      <mat-form-field>
+        <mat-label>Frequency</mat-label>
+        <input matInput placeholder="Optional" type="number" min="1" id="frequency"
+          [(ngModel)]="widget.frequency" name="frequency" />
+      </mat-form-field>
+
+      <button mat-dialog-close mat-dialog-close="true" (ngSubmit)="onSubmit()" mat-flat-button color="success"
+        type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

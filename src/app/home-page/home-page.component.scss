@@ -1,0 +1,222 @@
+
+
+h1 {
+  text-align: center;
+  padding-right: 5%;
+}
+
+h2 {
+  text-align: center;
+  padding-right: 3%;
+}
+
+.header-img {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+mat-icon.mat-card-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+section {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mat-list {
+  display: flex;
+  justify-content: space-around;
+  width: 1300px;
+  padding-left: 10%;
+}
+
+.card {
+  background-color: #00121b
+}
+
+.no-dashboard {
+  padding-left: 30px
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+		html {
+        scroll-behavior: smooth;
+        }
+
+		body{
+		margin:0;
+		font-family: 'Source Sans Pro', sans-serif;
+		}
+
+		.title{
+		font-size:2em;
+		color:#8c0c60;
+		display:block;
+		}
+
+		.sub-title{
+		font-size:0.8em;
+		color:gray;
+		display:block;
+		}
+
+		.btn1{
+		padding:10px 20px;
+		background:transparent;
+		border:1px solid #8c0c3c;
+		color:#8c0c3c;
+		border-radius:3px;
+		outline:none;
+		transition:0.5s;
+		}
+
+		.btn1:hover{
+		background:#8c0c3c;
+		color:#fff;
+		}
+
+		.btn2{
+		padding:10px 20px;
+		border-radius:3px;
+		background:#1e1e1e;
+		border:1px solid #1e1e1e;
+		color:#fff;
+		outline:none;
+		transition:0.5s;
+		}
+
+		.btn2:hover{
+		background:transparent;
+		color:#1e1e1e;
+		}
+
+		.title:before{
+		content:" ";
+		font-family:"FontAwesome";
+		font-size:30px;
+		}
+
+		a{
+		text-decoration:none;
+		}
+
+		.section2,.section3{
+		width:90%;
+		margin:5% 0%;
+		margin-left:auto;
+		margin-right:auto;
+		}
+
+		.section2 table,.section3 table{
+		width:100%;
+		}
+
+		.section2 table td,.section3 table td{
+		width:50%;
+		}
+
+		.section2 table td img,.section3 table td img{
+		width:80%;
+		height:70%;
+		margin-left:auto;
+		margin-right:auto;
+		box-shadow:0px 6px 16px -6px rgba(1,1,1,0.5);
+		}
+
+		.section3 table td img{
+		float:right;
+		}
+
+.footer{
+  box-shadow:0px 6px 16px -6px rgba(1,1,1,0.5);
+  background:#1e1e1e;
+  padding:10px 20px;
+  color:gray;
+  font-size:13px;
+  bottom:10px;
+  right:0;
+}
+
+.footer {
+	width: 100%;
+	background: #00121b;
+	display: block;
+ }
+
+ .inner-footer {
+	 width: 95%;
+	 margin: auto;
+	 padding: 30px 10px;
+	 display: flex;
+	 flex-wrap: wrap;
+	 box-sizing: border-box;
+	 justify-content: center;
+ }
+
+.footer-items {
+	width: 25%;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	color: #fff;
+}
+
+.footer-items p {
+	font-size: 16px;
+	text-align: justify;
+	line-height: 25px;
+	color: #fff;
+}
+
+.footer-items h1 {
+	color: #fff;
+}
+
+.border1 {
+	height: 3px;
+	width: 40px;
+	background: #ff9800;
+	color: #ff9800;
+	background-color: #ff9800;
+	border: 0px;
+}
+
+ul {
+	list-style: none;
+	color: #fff;
+	font-size: 15px;
+	letter-spacing: 0.5px;
+ }
+
+ul a {
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	transition: 0.3s;
+}
+
+ul a:hover {
+	color: #ff9800;
+}
+
+ul li {
+	margin: 10px 0;
+	height: 25px;
+}
+
+li i {
+	margin-right: 20px;
+}
+
+.footer-bottom {
+	padding: 10px;
+	background: #00121b;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+}

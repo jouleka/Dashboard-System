@@ -1,0 +1,47 @@
+<div>
+  <h3>Update Widget</h3>
+
+  <form [formGroup]="widgetForm" (ngSubmit)="onSubmit(widgetForm.value)">
+    <div class="form" >
+      <mat-form-field>
+        <mat-label>Widget Name</mat-label>
+        <input matInput placeholder="Name" required type="text" id="widgetName"
+          formControlName="widgetName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Widget Description</mat-label>
+        <input matInput placeholder="description" type="text"
+          id="widgetDescription" formControlName="widgetDescription" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Chart Type</mat-label>
+        <mat-select  formControlName="chartType">
+          <mat-option value="line">Line</mat-option>
+          <mat-option value="bar">Bar</mat-option>
+          <mat-option value="pie">Pie</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Widget Datas</mat-label>
+        <mat-select formControlName="widgetDataModels" multiple>
+          <mat-option *ngFor="let widget of widgetDataModel" [value]="widget">
+            {{ widget }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Frequency</mat-label>
+        <input matInput placeholder="frequency" required type="number" min="0"
+          id="frequency"  formControlName="frequency"/>
+      </mat-form-field>
+
+      <button mat-dialog-close mat-dialog-close="true" mat-flat-button color="success" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

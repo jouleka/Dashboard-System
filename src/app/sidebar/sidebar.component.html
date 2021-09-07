@@ -1,0 +1,57 @@
+<mat-sidenav-container autosize>
+
+  <div class="content">
+    <mat-toolbar>
+      <h3>Dashboard System</h3>
+
+      <mat-nav-list>
+        <mat-list-item>
+          <div>
+            <button id="infoStatus" mat-button color="accent" [ngClass]="{'red-icon' : !status}"><mat-icon>circle</mat-icon></button>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+
+        <mat-nav-list>
+          <mat-list-item>
+            <div>
+              <mat-icon class="user">account_circle</mat-icon>
+            </div>
+          </mat-list-item>
+        </mat-nav-list>
+    </mat-toolbar>
+  </div>
+
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <mat-list-item [routerLink]="'api/home-page'">
+        <img src="assets/img/dashboard-logo.png" />
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon class="chevron-button sidenav-button" [ngClass]="{ rotated: opened }"
+          (click)="opened = !opened">chevron_right</mat-icon>
+        <span *ngIf="opened">Services</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'api/dashboard'">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <span *ngIf="opened">Dashboards </span>
+        <span *ngIf="opened">
+          <mat-icon class="secChevron-button sidenav-button" [ngClass]="{ rotatedd: openedDashboard }"
+            (click)="openedDashboard = !openedDashboard" mat-list-icon>arrow_drop_down</mat-icon>
+        </span>
+      </mat-list-item>
+
+    </mat-nav-list>
+
+    <mat-list openedDashboard="true">
+      <mat-list-item *ngFor="let dashboard of datasource | slice:0:10">
+        <div  *ngIf="openedDashboard" >
+          <button (click)="goToWidgetList(dashboard.id)" mat-button><mat-icon class="icon">analytics</mat-icon>{{ dashboard.dashboardName }}</button></div>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

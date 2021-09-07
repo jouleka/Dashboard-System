@@ -1,0 +1,26 @@
+<div>
+  <h1>
+    Update Dashboard
+  </h1>
+</div>
+
+<div>
+  <form [formGroup]="dashboardForm" (ngSubmit)="onUpdate(dashboardForm.value)">
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Dashboard Name</mat-label>
+        <input matInput placeholder="Name" required type="text" id="dashboardName"
+          formControlName="dashboardName" name="dashboardName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dashboard Description</mat-label>
+        <input matInput placeholder="description"  type="text"
+          id="dashboardDescription" formControlName="dashboardDescription" name="dashboardDescription" />
+      </mat-form-field>
+      <button mat-dialog-close mat-flat-button color="success" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

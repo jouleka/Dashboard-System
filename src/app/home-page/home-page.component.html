@@ -1,0 +1,229 @@
+<body class="body-doc">
+<br>
+<h1>Welcome to DashboardMG</h1>
+
+<div>
+  <section class="section2" id="AboutUs">
+    <table>
+      <tr>
+        <td>
+          <img
+            src="https://images.unsplash.com/photo-1499083097717-a156f85f0516?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80"
+            alt="AboutUs" />
+        </td>
+        <td>
+          <span class="title">About Us</span>
+          <span class="sub-title">and why you should choose us</span>
+          <p>
+            We aggregate data from multiple data sources. Our dashboard isn't just about saving time, but seeing all of
+            your data together in one place. The connection between your data isn’t another API call—it’s you and the
+            expertise you bring to the metrics that are the power behind your business.
+          </p>
+          <p>
+            You don’t have to be a data analyst to use and understand our dashboard. Dashboards should be easy to read.
+            When you apply the principles and best practices of dashboard design, you can call-out important data points
+            that anyone can observe and understand at-a-glance. Our dashboard is designed so that even if you don’t work
+            in marketing or finance, you can still understand the data being presented.
+          </p>
+          <a href="#OurMission" class="btn1">Our Misssion</a>
+          <a href="" class="btn2">Know More</a>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="section3" id="OurMission">
+    <table>
+      <tr>
+        <td>
+          <span class="title">Our Mission</span>
+          <span class="sub-title">is to make your life easier</span>
+          <p>
+            Our dashboard allows everyone in the business to make and validate business decisions and create greater
+            synergy across the organization.
+          </p>
+          <p>
+            With the data readily available on our dashboard, executives and leaders no longer have to request
+            information from a data analyst. Analysts can work in the background while users can access the information
+            they need at any time. It’s a win-win!
+          </p>
+          <a href="" class="btn2">Know More</a>
+        </td>
+        <td>
+          <img
+            src="https://eohack-assets.eodashboardhackathon.org/media/images/eodashboard.width-500.png"
+            alt="AboutUs" />
+        </td>
+      </tr>
+    </table>
+  </section>
+</div>
+
+<div class="section-1">
+  <h2>Recently Used Dashboards</h2>
+  <mat-divider></mat-divider>
+  <br />
+  <section>
+
+    <mat-list class="mat-list" *ngIf="!dashboardsAreEmpty">
+      <mat-list-item *ngFor="let dashboard of datasource | slice:0:3; let i=index">
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar>dashboard
+            </mat-icon>
+            <mat-card-title>{{ dashboard.dashboardName }}</mat-card-title>
+            <mat-card-subtitle>Recently used dashboard</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>{{ dashboard.dashboardDescription }}</mat-card-content>
+          <mat-card-actions align="end">
+            <button (click)="goToWidgetList(dashboard.id)" mat-button>
+              <mat-icon>add</mat-icon>
+            </button>
+            <button (click)="deleteDialog(dashboard.id)" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-list class="no-dashboard" *ngIf="dashboardsAreEmpty">
+      <mat-card>
+        <mat-card-header>
+          <mat-icon>analytics</mat-icon>
+          <mat-card-title>Dashboard title goes here</mat-card-title>
+          <mat-card-subtitle>These will be your most recently used Dashboards </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button align="end">
+            <mat-icon (click)="goToDashboardList()">add</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-list>
+
+    <!-- <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-img"></div>
+        <mat-card-title>Dashboard Name</mat-card-title>
+        <mat-card-subtitle>Some Description</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>Some Content</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button>
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-img"></div>
+        <mat-card-title>Dashboard Name</mat-card-title>
+        <mat-card-subtitle>Some Description</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>Some Content</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button>
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-img"></div>
+        <mat-card-title>Dashboard Name</mat-card-title>
+        <mat-card-subtitle>Some Description</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>Some Content</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button>
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card> -->
+  </section>
+</div>
+
+<br />
+
+<div class="footer">
+  <div class="inner-footer">
+    <div class="footer-items">
+      <h1>DashboardMG</h1>
+      <p>
+        DashboardMG requires only a web browser for end-users and developers, so
+        deployment time is minimized. An IT person with basic database
+        administration skills can install and set up the software.
+      </p>
+    </div>
+
+    <div class="footer-items">
+      <h3>Quick Links</h3>
+      <div class="border1"></div>
+
+      <ul>
+        <a href="#">
+          <li>Home</li>
+        </a>
+        <a href="#">
+          <li>Search</li>
+        </a>
+        <a href="#">
+          <li>Contact</li>
+        </a>
+        <a href="#">
+          <li>About</li>
+        </a>
+      </ul>
+    </div>
+
+    <div class="footer-items">
+      <h3>Supported Languages</h3>
+      <div class="border1"></div>
+
+      <ul>
+        <a href="#">
+          <li>Spanish</li>
+        </a>
+        <a href="#">
+          <li>Italian</li>
+        </a>
+        <a href="#">
+          <li>Russian</li>
+        </a>
+        <a href="#">
+          <li>German</li>
+        </a>
+      </ul>
+    </div>
+
+    <div class="footer-items">
+      <h3>Contact us</h3>
+      <div class="border1"></div>
+      <ul>
+        <li>
+          <i class="fa fa-map-marker" aria-hidden="true"></i>Rr. Reshit Petrela
+        </li>
+        <li><i class="fa fa-phone" aria-hidden="true"></i>+355 69 345 453</li>
+        <li>
+          <i class="fa fa-envelope" aria-hidden="true"></i>dashboardMG@gmail.com
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">Copyright &copy; Dashboard System 2021.</div>
+</div>
+
+</body>
