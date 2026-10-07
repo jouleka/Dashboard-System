@@ -48,26 +48,26 @@ public class DashboardService {
         dashboardModelList.removeIf(dashboard1 -> dashboard1.getDate() == null);
         dashboardModelList.removeIf(dashboard -> !dashboard.isStatus());
         dashboardModelList.sort(new Sorting());
-        return dashboardRepository.saveAll(dashboardModelList);
+        return dashboardModelList;
     }
 
     public List<DashboardModel> recentlyUsedAndOnlineDashboard() {
         List<DashboardModel> dashboardModelList = dashboardRepository.findAll();
         dashboardModelList.removeIf(dashboard -> !dashboard.isStatus());
 //        dashboardModelList.sort(new Sorting());
-        return dashboardRepository.saveAll(dashboardModelList);
+        return dashboardModelList;
     }
 
     public List<DashboardModel> OnlineDashboards() {
         List<DashboardModel> dashboardModelList = dashboardRepository.findAll();
         dashboardModelList.removeIf(dashboard -> !dashboard.isStatus());
-        return dashboardRepository.saveAll(dashboardModelList);
+        return dashboardModelList;
     }
 
     public List<DashboardModel> OfflineDashboards() {
         List<DashboardModel> dashboardModelList = dashboardRepository.findAll();
         dashboardModelList.removeIf(dashboard -> dashboard.isStatus());
-        return dashboardRepository.saveAll(dashboardModelList);
+        return dashboardModelList;
     }
 
 //    public Optional<DashboardModel> widgetListById(String id) {

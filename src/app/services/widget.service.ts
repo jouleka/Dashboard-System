@@ -21,7 +21,7 @@ export class WidgetService {
   }
 
   getDashboardWidgetById(id: any): Observable<any> {
-    return this.http.get(`${baseUrl}/list/widget/${id}`);
+    return this.http.post(`${baseUrl}/list/widget/${id}`, {});
   }
 
   addWidget(data: any): Observable<any> {

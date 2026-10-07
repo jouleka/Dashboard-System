@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200"})
 @RestController
 @RequestMapping("/api/widget-controller")
 public class WidgetController {
@@ -27,7 +27,7 @@ public class WidgetController {
         return widgetRepository.findAll();
     }
 
-    @GetMapping("/list/widget/{id}")
+    @PostMapping("/list/widget/{id}")
     public List<WidgetModel> getDashboardWidgetById(@PathVariable String id) {
         return widgetService.listDashboardWidgetById(id);
     }

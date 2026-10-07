@@ -63,7 +63,7 @@ public class WidgetService {
         List<WidgetModel> widgetModelList = widgetRepository.findAll();
 
         widgetModelList.removeIf(widget -> !widget.getDashboardId().equals(dashboardModel.get().getId()));
-        return widgetRepository.saveAll(widgetModelList);
+        return widgetModelList;
 
     }
 
