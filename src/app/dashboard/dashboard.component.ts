@@ -2,23 +2,29 @@ import { DisableDialogComponent } from './../disable-dialog/disable-dialog.compo
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardService } from './../services/dashboard.service';
 import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { DashboardModel } from '../models/dashboard.model';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSlideToggleChange, MatSlideToggle } from '@angular/material/slide-toggle';
 import { ToastrService } from 'ngx-toastr';
 import { CommunicationService } from '../services/communication.service';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgClass } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatButton, MatSelect, MatOption, MatTable, MatSort, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatSortHeader, MatCellDef, MatCell, NgClass, MatIcon, MatSlideToggle, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, MatPaginator]
 })
 export class DashboardComponent implements OnInit {
 
@@ -37,7 +43,7 @@ export class DashboardComponent implements OnInit {
   dashboard: DashboardModel = new DashboardModel();
   dashboardSec!: DashboardModel
   datasource!: MatTableDataSource<any>;
-  dashboardForm!: FormGroup;
+  dashboardForm!: UntypedFormGroup;
   isDisable: boolean = false;
   selected = 'All';
 
@@ -45,7 +51,7 @@ export class DashboardComponent implements OnInit {
     private dashboardService: DashboardService,
     private router: Router,
     private dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private activateRouter: ActivatedRoute,
     private toastr: ToastrService,
     private communicationService: CommunicationService,
@@ -193,7 +199,7 @@ export class DashboardComponent implements OnInit {
   }
 
   initFormDashboardForm() {
-    this.dashboardForm = new FormGroup({
+    this.dashboardForm = new UntypedFormGroup({
       dashboardName: this.fb.control(''),
       dashboardDescription: this.fb.control(''),
     });

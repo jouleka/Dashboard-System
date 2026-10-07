@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -8,11 +8,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DashboardModel } from '../models/dashboard.model';
 import { DashboardService } from '../services/dashboard.service';
+import { MatDivider, MatList, MatListItem } from '@angular/material/list';
+import { NgIf, NgFor, SlicePipe } from '@angular/common';
+import { MatCard, MatCardHeader, MatCardAvatar, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+    selector: 'app-home-page',
+    templateUrl: './home-page.component.html',
+    styleUrls: ['./home-page.component.scss'],
+    imports: [MatDivider, NgIf, MatList, NgFor, MatListItem, MatCard, MatCardHeader, MatIcon, MatCardAvatar, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions, MatButton, SlicePipe]
 })
 export class HomePageComponent implements OnInit {
 
@@ -21,7 +27,7 @@ export class HomePageComponent implements OnInit {
   dashboard: DashboardModel = new DashboardModel();
   dashboardSec!: DashboardModel
   datasource: any[] = [];
-  dashboardForm!: FormGroup;
+  dashboardForm!: UntypedFormGroup;
   isDisable: boolean = false;
   dashboardsAreEmpty: boolean = true;
 
@@ -33,7 +39,7 @@ export class HomePageComponent implements OnInit {
     private dashboardService: DashboardService,
     private router: Router,
     private dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private activateRouter: ActivatedRoute,
     private toastr: ToastrService
   ) { }

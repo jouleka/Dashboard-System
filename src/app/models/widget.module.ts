@@ -1,4 +1,3 @@
-import { NgAnalyzedFile } from '@angular/compiler';
 import { ChartTypeModel } from './chartType.model';
 
 export class WidgetModel {

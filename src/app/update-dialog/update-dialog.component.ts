@@ -1,27 +1,30 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardService } from '../services/dashboard.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { DashboardModel } from '../models/dashboard.model';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CommunicationService } from '../services/communication.service';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-update-dialog',
-  templateUrl: './update-dialog.component.html',
-  styleUrls: ['./update-dialog.component.scss']
+    selector: 'app-update-dialog',
+    templateUrl: './update-dialog.component.html',
+    styleUrls: ['./update-dialog.component.scss'],
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatButton, MatDialogClose]
 })
 export class UpdateDialogComponent implements OnInit {
 
-  dashboardForm!: FormGroup;
+  dashboardForm!: UntypedFormGroup;
   datasource!: MatTableDataSource<any>;
   id!: string;
   dashboardList?: DashboardModel[];
   dashboard: DashboardModel = new DashboardModel();
 
-  constructor(private fb: FormBuilder, private service: DashboardService, public dialogRef: MatDialogRef<UpdateDialogComponent>,
+  constructor(private fb: UntypedFormBuilder, private service: DashboardService, public dialogRef: MatDialogRef<UpdateDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private toastr: ToastrService,
       private communicationService: CommunicationService,
@@ -52,7 +55,7 @@ export class UpdateDialogComponent implements OnInit {
   }
 
   initForm() {
-    this.dashboardForm = new FormGroup({
+    this.dashboardForm = new UntypedFormGroup({
       dashboardName: this.fb.control(''),
       dashboardDescription: this.fb.control(''),
     });

@@ -3,6 +3,7 @@ import { CommunicationService } from './services/communication.service';
 import { WebSocketService } from './services/web-socket.service';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

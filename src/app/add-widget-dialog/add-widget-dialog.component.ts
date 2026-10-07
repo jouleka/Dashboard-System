@@ -1,16 +1,22 @@
 import { ChartType } from 'chart.js';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ChartTypeModel } from '../models/chartType.model';
 import { WidgetModel } from '../models/widget.module';
 import { WidgetService } from '../services/widget.service';
+import { FormsModule } from '@angular/forms';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-add-widget-dialog',
-  templateUrl: './add-widget-dialog.component.html',
-  styleUrls: ['./add-widget-dialog.component.scss']
+    selector: 'app-add-widget-dialog',
+    templateUrl: './add-widget-dialog.component.html',
+    styleUrls: ['./add-widget-dialog.component.scss'],
+    imports: [FormsModule, MatFormField, MatLabel, MatInput, MatSelect, MatOption, NgFor, MatButton, MatDialogClose]
 })
 export class AddWidgetDialogComponent implements OnInit {
 

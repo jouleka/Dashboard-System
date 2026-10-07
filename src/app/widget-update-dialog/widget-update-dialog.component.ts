@@ -1,22 +1,27 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UntypedFormBuilder, UntypedFormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { WidgetModel } from '../models/widget.module';
 import { WidgetService } from '../services/widget.service';
+import { MatFormField, MatLabel, MatInput } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-widget-update-dialog',
-  templateUrl: './widget-update-dialog.component.html',
-  styleUrls: ['./widget-update-dialog.component.scss']
+    selector: 'app-widget-update-dialog',
+    templateUrl: './widget-update-dialog.component.html',
+    styleUrls: ['./widget-update-dialog.component.scss'],
+    imports: [FormsModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatSelect, MatOption, NgFor, MatButton, MatDialogClose]
 })
 export class WidgetUpdateDialogComponent implements OnInit {
 
   newWidget: WidgetModel = new WidgetModel;
   dashboardId!: string;
   datasource: any[] = [];
-  widgetForm!: FormGroup;
+  widgetForm!: UntypedFormGroup;
   widget!: WidgetModel;
   id!: string;
   chartTypeList: string[] = [
@@ -37,7 +42,7 @@ export class WidgetUpdateDialogComponent implements OnInit {
   ]
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private widgetService: WidgetService,
     private router: Router,
     private toastr: ToastrService,
@@ -99,7 +104,7 @@ export class WidgetUpdateDialogComponent implements OnInit {
   // }
 
   initForm() {
-    this.widgetForm = new FormGroup({
+    this.widgetForm = new UntypedFormGroup({
       widgetName: this.fb.control(''),
       widgetDescription: this.fb.control(''),
       chartType: this.fb.control(''),

@@ -1,5 +1,7 @@
 package com.free.dashboardsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(onConstructor_ = @JsonCreator)
 @EqualsAndHashCode
 @PropertySource("classpath:dataSource.properties")
 public class WidgetModel {

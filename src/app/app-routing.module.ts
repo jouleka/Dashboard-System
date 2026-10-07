@@ -1,17 +1,13 @@
-import { WidgetComponent } from './widget/widget.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'api/home-page', pathMatch: 'full' },
-  { path: 'api/home-page', component: HomePageComponent },
-  { path: 'api/dashboard', component: DashboardComponent},
-  { path: 'api/dashboard/update/:id', component: UpdateDialogComponent },
-  { path: 'api/dashboard/view/:id', component: WidgetComponent},
-  { path: 'api/widget', component: WidgetComponent },
+  { path: 'api/home-page', loadComponent: () => import('./home-page/home-page.component').then(module => module.HomePageComponent) },
+  { path: 'api/dashboard', loadComponent: () => import('./dashboard/dashboard.component').then(module => module.DashboardComponent)},
+  { path: 'api/dashboard/update/:id', loadComponent: () => import('./update-dialog/update-dialog.component').then(module => module.UpdateDialogComponent) },
+  { path: 'api/dashboard/view/:id', loadComponent: () => import('./widget/widget.component').then(module => module.WidgetComponent)},
+  { path: 'api/widget', loadComponent: () => import('./widget/widget.component').then(module => module.WidgetComponent) },
 ];
 
 @NgModule({

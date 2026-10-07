@@ -101,7 +101,7 @@
             [labels]="item.widgetDataModels"
             [options]="barChartOptions"
             [legend]="barChartLegend"
-            [chartType]="item.chartType">
+            [type]="item.chartType">
             <!-- [colors]="barChartColors" -->
           </canvas>
     </div>
@@ -109,7 +109,7 @@
 </gridster>
 <br>
 <div class="succes-button">
-  <button (click)="updateCoordinates()" mat-flat-button color="success">Save</button>
+  <button (click)="updateCoordinates()" mat-flat-button color="primary">Save</button>
 </div>
 <br>
 

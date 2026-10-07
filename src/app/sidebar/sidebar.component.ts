@@ -1,19 +1,25 @@
 import { CommunicationService } from './../services/communication.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { DashboardModel } from '../models/dashboard.model';
 import { DashboardService } from '../services/dashboard.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatSidenavContainer, MatSidenav } from '@angular/material/sidenav';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatNavList, MatListItem, MatList } from '@angular/material/list';
+import { MatButton } from '@angular/material/button';
+import { NgClass, NgIf, NgFor, SlicePipe } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
+    imports: [MatSidenavContainer, MatToolbar, MatNavList, MatListItem, MatButton, NgClass, MatIcon, MatSidenav, RouterLink, NgIf, MatList, NgFor, RouterOutlet, SlicePipe]
 })
 export class SidebarComponent implements OnInit{
 
@@ -21,7 +27,7 @@ export class SidebarComponent implements OnInit{
   dashboardList?: DashboardModel[];
   dashboard: DashboardModel = new DashboardModel();
   datasource: any[] = [];
-  dashboardForm!: FormGroup;
+  dashboardForm!: UntypedFormGroup;
   opened: boolean = false;
   openedDashboard: boolean = false;
   status: boolean = true;
@@ -30,7 +36,7 @@ export class SidebarComponent implements OnInit{
   constructor(private dashboardService: DashboardService,
     private router: Router,
     private dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private activateRouter: ActivatedRoute,
     private toastr: ToastrService,
     private communicationService: CommunicationService) { }

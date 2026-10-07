@@ -1,5 +1,7 @@
 package com.free.dashboardsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(onConstructor_ = @JsonCreator)
 @EqualsAndHashCode
 @ToString
 public class WidgetDataModelPie {

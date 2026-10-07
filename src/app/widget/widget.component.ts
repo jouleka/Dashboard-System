@@ -1,19 +1,25 @@
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { DeleteWidgetDialogComponent } from './../delete-widget-dialog/delete-widget-dialog.component';
 import { WidgetUpdateDialogComponent } from './../widget-update-dialog/widget-update-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CompactType, DisplayGrid, Draggable, GridsterConfig, GridsterItem, GridType, PushDirections, Resizable } from 'angular-gridster2';
+import { CompactType, DisplayGrid, Draggable, GridsterConfig, GridsterItemConfig, GridType, PushDirections, Resizable, Gridster, GridsterItem } from 'angular-gridster2';
 import { AddWidgetDialogComponent } from '../add-widget-dialog/add-widget-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { WidgetModel } from '../models/widget.module';
 import { WidgetService } from '../services/widget.service';
 import { InjectionToken } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
+type Label = string;
 import { WebSocketService } from '../services/web-socket.service';
 import { CommunicationService } from '../services/communication.service';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { NgFor } from '@angular/common';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { BaseChartDirective } from 'ng2-charts';
 
 
 interface Safe extends GridsterConfig {
@@ -23,9 +29,11 @@ interface Safe extends GridsterConfig {
 }
 
 @Component({
-  selector: 'app-widget',
-  templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
+  providers: [provideCharts(withDefaultRegisterables())],
+    selector: 'app-widget',
+    templateUrl: './widget.component.html',
+    styleUrls: ['./widget.component.scss'],
+    imports: [MatButton, MatIcon, Gridster, NgFor, GridsterItem, MatIconButton, MatMenuTrigger, MatMenu, MatMenuItem, BaseChartDirective]
 })
 export class WidgetComponent implements OnInit {
 
@@ -33,7 +41,7 @@ export class WidgetComponent implements OnInit {
   MAT_DIALOG_DATA!: InjectionToken<any>;
   dashboardId!: any;
   options!: Safe;
-  dashboard!: Array<GridsterItem>;
+  dashboard!: Array<GridsterItemConfig>;
   datasource: any[] = [];
   widget: WidgetModel = new WidgetModel;
   newWidgetData!: WidgetComponent;
@@ -49,19 +57,14 @@ export class WidgetComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
+    scales: { x: {}, y: {} },
+    plugins: { legend: { display: true } }
   };
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
 
-  public barChartData: ChartDataSets[] = [];
+  public barChartData: ChartDataset[] = [];
   // public barChartColors: Color[] = [
   //   { backgroundColor: 'red' },
   // ]
