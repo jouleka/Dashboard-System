@@ -19,4 +19,8 @@ The lockfile removes the old vulnerable Angular/build/test dependency trees. Spr
 
 Bundle-size and legacy typing warnings remain visible. No production error budget or advisory is suppressed. A clean advisory scan is limited to vulnerabilities known to its database and is not a guarantee against application security issues.
 
-This application remains a prototype with API endpoints that do not enforce a complete authenticated identity and resource authorization policy. Keep it on a trusted local network. Public deployment requires a separate authentication and authorization migration, including WebSocket access where applicable; dependency patches do not provide those controls.
+This application remains a prototype with API endpoints that do not enforce a complete authenticated identity and resource authorization policy. Run it only on the local machine. The backend binds to `127.0.0.1` by default and accepts browser origins `http://localhost:4200` and `http://127.0.0.1:4200`. Public deployment requires a separate authentication and authorization migration, including WebSocket access where applicable; loopback/CORS restrictions and dependency patches do not provide those controls.
+
+Embedded-server regressions load the main configuration and verify the actual server factory's loopback address, accepted local preflights, rejected foreign/opaque origins, and rejected foreign simple requests. These tests do not override the listener address.
+
+Manual `/notify` and `/widgetdata` broadcasts require POST. Dashboard widget viewing at `/api/widget-controller/list/widget/{id}` also uses POST because it records the recent-use date; the Angular caller is updated and that feature is preserved. Scheduled chart broadcasts continue. Ordinary filtered listing GETs do not write data back. Regressions verify the old originless GET actions return 405 and allowed local POST actions retain their behavior.
